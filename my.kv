@@ -1,6 +1,47 @@
-<Touch>
-    btn: btn
-    
+WindowManager:
+    MainWindow:
+    SecondWindow:
+
+<MainWindow>:
+    name: "main"
+
+    GridLayout:
+        cols:1
+
+        GridLayout:
+            cols:2
+
+            Label:
+                text: "Name:"
+
+            TextInput:
+                id: name
+                multiline: False
+
+            Label:
+                text: "Password:\n (Correct Password is \"heslo123\")"
+                
+            TextInput:
+                id: passwd
+                multilne: False
+
+        Button:
+            id: btn
+            text:"Submit"
+            on_release:
+                app.root.current = "second" if passwd.text == "heslo123" else "main"
+                root.manager.transition.direction = "left"
+            opacity: 1 if btn.state == "normal" else 0.6
+            background_color: 0.3,0.4,0.5,1
+
+<SecondWindow>:
+    name: "second"
+
     Button:
-        id: btn
-        text: "MyBtn"
+        text: "Go Back"
+        on_release: 
+            app.root.current = "main"
+            root.manager.transition.direction = "right"
+    
+
+
